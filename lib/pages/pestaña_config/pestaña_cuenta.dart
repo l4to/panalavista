@@ -107,9 +107,7 @@ class Botoncitos extends StatelessWidget {
         contentPadding: EdgeInsets.only(bottom: 0, left: 10, top: 14),
 
         //shape: const RoundedRectangleBorder( side: BorderSide(color: Colors.black, width: 1),borderRadius: BorderRadius.zero,)
-        shape: Border(
-            bottom:
-                BorderSide(width: 0, color: Color.fromARGB(255, 88, 88, 88))),
+        
 
         title: Align(
           child: Row(children: [

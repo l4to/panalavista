@@ -98,7 +98,7 @@ class _MyUbicacionState extends State<MyUbicacion> {
                   ),
                   Container(
                     margin:
-                        const EdgeInsets.only(bottom: 10, left: 150, top: 0),
+                        const EdgeInsets.only(bottom: 50, left: 150, top: 0),
                     child: IconButton(
                       icon: Icon(
                         Icons.remove_red_eye,
@@ -140,12 +140,11 @@ class Botoncitos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 100,
+        height: 110,
         child: ListTile(
-          contentPadding: EdgeInsets.only(top: 11, left: 20),
+          contentPadding: EdgeInsets.only(top: 35, left: 20),
 
-          //shape: const RoundedRectangleBorder( side: BorderSide(color: Colors.black, width: 1),borderRadius: BorderRadius.zero,)
-          shape: Border(bottom: BorderSide(width: 1, color: Colors.black)),
+          
 
           title: titulo,
           subtitle: Container(
