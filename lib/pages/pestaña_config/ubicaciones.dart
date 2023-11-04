@@ -144,8 +144,7 @@ class Botoncitos extends StatelessWidget {
         child: ListTile(
           contentPadding: EdgeInsets.only(top: 11, left: 20),
 
-          //shape: const RoundedRectangleBorder( side: BorderSide(color: Colors.black, width: 1),borderRadius: BorderRadius.zero,)
-          shape: Border(bottom: BorderSide(width: 1, color: Colors.black)),
+          
 
           title: titulo,
           subtitle: Container(
