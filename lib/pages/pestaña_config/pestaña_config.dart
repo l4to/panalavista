@@ -94,7 +94,7 @@ class Botoncitos extends StatelessWidget {
 
         onTap: presionar,
         //shape: const RoundedRectangleBorder( side: BorderSide(color: Colors.black, width: 1),borderRadius: BorderRadius.zero,)
-        
+        shape: Border(bottom: BorderSide(width: 1, color: Colors.black)),
 
         title: Padding(
           padding: EdgeInsets.only(left: 20),
