@@ -15,19 +15,19 @@ class MyCuenta extends StatefulWidget {
 
 class _MyCuentaState extends State<MyCuenta> {
 
-  String nombre = 'Pepe Andres';
-  String apellido = 'Rojas Cerpa';
-  String correo = 'contraseña ';
-  String contrasena = '************';
+   final List<String> tasks = <String>[];
+  final nombre = TextEditingController();
+  final apellido = TextEditingController();
+  final correo = TextEditingController();
+  final contrasena =TextEditingController();
 
-  void changeText() {
-    setState(() {
-      nombre = 'Nuevo texto';
-    });
+  _iddItem(value){
+              correo.clear();
+              setState(() {
+                tasks.add(value);
+              });
   }
-
   
-
   
   @override
   Widget build(BuildContext context) {
@@ -61,35 +61,45 @@ class _MyCuentaState extends State<MyCuenta> {
           ],
         ),
         drawer: Drawer(child: MyDrawer()),
-        body: SizedBox(
+        body:Container(
+          child: SingleChildScrollView(
             child: Column(
           children: [
             Botoncitos(
-              titulo: 'Nombre                 ',
-              subdata: nombre,
+              titulo: 'Nombre',
+              subdata: TextField(
+                  controller:nombre 
+              ),
               clikBoton: () {
                 
-                ;
               },
             ),
             Botoncitos(
               clikBoton: () {
-                 changeText;
-                child: Text('Cambiar Texto')
-                ;
               },
-              titulo: 'Apellido                 ',
-              subdata: apellido,
+              titulo: 'Apellido',
+              subdata: TextField(
+                keyboardType:TextInputType.text ,
+                  controller:apellido,
+                  onSubmitted:_iddItem ,
+              ),
+              
+              
               
             ),
             Botoncitos(
-              titulo: 'Correo electronico',
-              subdata: correo,
+              titulo: 'Correo  ',
+              subdata: TextField(
+                keyboardType: TextInputType.emailAddress,
+                  controller:correo,),
               clikBoton: () {},
             ),
             Botoncitos(
-              titulo: 'Contraseña           ',
-              subdata: contrasena,
+              titulo: 'Codigo ',
+              subdata: TextField(
+                keyboardType: TextInputType.visiblePassword,
+                  controller:contrasena ,
+              ),
               clikBoton: () {},
             ),
             Botoncitos2(
@@ -103,7 +113,7 @@ class _MyCuentaState extends State<MyCuenta> {
                 },
                 subdata2: 'hola')
           ],
-        )));
+        ))));
   }
 }
 
@@ -113,7 +123,7 @@ class Botoncitos extends StatelessWidget {
   final String titulo;
   //final Row texto;
   //final Container boton;
-  final String subdata;
+  final TextField subdata;
   final VoidCallback clikBoton;
 
   const Botoncitos(
@@ -130,35 +140,48 @@ class Botoncitos extends StatelessWidget {
         
 
         title: Align(
+          
           child: Row(children: [
             Column(
               children: [
+                
+                Container(
+                  margin: const EdgeInsets.only(right: 100),
+                  child:
                 Text(
                   titulo,
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 18),
+                )),
+                Container(
+                  margin: const EdgeInsets.only(top: 25),
+                  width: 170,
+                  height: 17,
+                child:subdata
                 ),
-                Text(
-                  subdata,
-                  style: TextStyle(fontSize: 14),
-                )
               ],
             ),
             Container(
                 width: 104,
                 height: 30,
-                margin: const EdgeInsets.only(top: 35, left: 30),
+                margin: const EdgeInsets.only(top: 0, left: 50),
+                
                 child: ElevatedButton(
+                  
                   onPressed: clikBoton,
-                  child: Text(
-                    'Cambiar',
+                  
+                  child:Row(children: [
+                  Icon(Icons.delete),
+                  Text(
+                    'Eliminar',
                     selectionColor: Colors.red,
+                  ),],
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 2, 199, 28),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     foregroundColor: Color.fromARGB(255, 236, 236, 236),
-                  ),
+                  )
               
                 )),
            
@@ -191,6 +214,7 @@ class Botoncitos2 extends StatelessWidget {
       height: 120,
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        
         children: [
           ElevatedButton(
             onPressed: () {
