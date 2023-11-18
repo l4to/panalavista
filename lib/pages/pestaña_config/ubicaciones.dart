@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica_3/pages/configuraciones.dart';
+import 'package:practica_3/widgets/drawer.dart';
 
 class MyUbicacion extends StatefulWidget {
   const MyUbicacion({super.key});
@@ -9,6 +10,9 @@ class MyUbicacion extends StatefulWidget {
 }
 
 class _MyUbicacionState extends State<MyUbicacion> {
+  final latidud ='-300,9898,303';
+  final longitud ='-300,9898,303';
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +27,7 @@ class _MyUbicacionState extends State<MyUbicacion> {
           elevation: 14,
           //shadowColor: Colors.white,
 
-          leading: const Icon(
-            Icons.account_circle,
-            color: Color.fromARGB(252, 0, 0, 0),
-            size: 60,
-          ),
+          
           actions: [
             IconButton(
               icon: Icon(
@@ -44,62 +44,48 @@ class _MyUbicacionState extends State<MyUbicacion> {
             )
           ],
         ),
-        body: Column(
+        drawer: Drawer(child: MyDrawer()),
+        body: Container(
+          child: SingleChildScrollView(
+          child: Column(
           children: [
             Botoncitos(
               subtitle2: 'Lampa',
-              subtitle: '',
-              titulo: Container(
-                child: Text(
-                  'Distrito',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ),
+              subtitle: 'Distrito',
+              icono: Icon(Icons.group_remove_rounded,color: Color.fromARGB(255, 0, 0, 0),size: 50),
+             titulo: IconButton(onPressed: null, icon: Icon(null),)
             ),
             Botoncitos(
                 subtitle2: 'Arequipa',
-                subtitle: '',
-                titulo: Container(
-                  child: Text(
-                    'Pais',
-                    style: TextStyle(
-                      fontSize: 17,
-                    ),
-                  ),
-                )),
+                subtitle: 'Departamento',
+                icono: Icon(Icons.group_remove_rounded,color: Color.fromARGB(255, 0, 0, 0),size: 50),
+                titulo: IconButton(onPressed: null, icon: Icon(null),)
+                ),
             Botoncitos(
                 subtitle2: 'Perú',
-                subtitle: '',
-                titulo: Container(
-                  child: Text(
-                    'Provincia',
-                    style: TextStyle(
-                      fontSize: 17,
-                    ),
-                  ),
+                subtitle: 'Pais',
+                icono: Icon(Icons.group_remove_rounded,color: Color.fromARGB(255, 0, 0, 0),size: 50),
+               titulo: IconButton(onPressed:null, icon: Icon(null),)
+               ),
+             Botoncitos(
+                subtitle2: longitud,
+                subtitle: 'Longitud',
+                icono: Icon(Icons.group_remove_rounded,color: Color.fromARGB(255, 0, 0, 0),size: 50),
+                titulo: IconButton(onPressed: null, icon: Icon(null),
+                
+                ),),
+               Botoncitos(
+                subtitle2: latidud,
+                subtitle: 'Latitud',
+                icono: Icon(Icons.group_remove_rounded,color: Color.fromARGB(255, 0, 0, 0),size: 50),
+                titulo: IconButton(onPressed:null, icon: Icon(null),
+                  
                 )),
             Botoncitos(
-              subtitle2: '',
-              subtitle: '',
-              titulo: Container(
-                child: Row(children: [
-                  Column(
-                    children: [
-                      Text(
-                        'IP    ',
-                      ),
-                      Text(
-                        '**********',
-                        style: TextStyle(fontSize: 17),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin:
-                        const EdgeInsets.only(bottom: 50, left: 150, top: 0),
-                    child: IconButton(
+              subtitle2: '********',
+              subtitle: 'IP                          ',
+              icono: Icon(Icons.group_remove_rounded,color: Color.fromARGB(255, 0, 0, 0),size: 50),
+              titulo:IconButton(
                       icon: Icon(
                         Icons.remove_red_eye,
                         color: Color.fromARGB(255, 0, 0, 0),
@@ -112,43 +98,68 @@ class _MyUbicacionState extends State<MyUbicacion> {
                                 builder: (context) =>
                                     const Myconfiguraciones()));
                       },
-                    ),
-                  )
-                ]) //Text(subdata, style: TextStyle(fontSize: 18)),
-
-                ,
-              ),
-            ),
-          ],
-        ));
-  }
+                    )),
+  ]))));}
+  
 }
 
 // estos son los botones es el modelo qque nos permiet ponder hacer esos 4 botones
 
 class Botoncitos extends StatelessWidget {
-  final Container titulo;
+  final IconButton titulo;
+  final Icon icono;
   final String subtitle;
   final String subtitle2;
+  //final Icons icon;
+  
 
   const Botoncitos({
     required this.titulo,
     required this.subtitle,
     required this.subtitle2,
+    required this.icono,
+    //required this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 110,
+        height: 80,
         child: ListTile(
           contentPadding: EdgeInsets.only(top: 35, left: 20),
 
           
 
-          title: titulo,
+          title: Container(
+                child: Row(children: [
+
+                  Container(
+                    margin:
+                        const EdgeInsets.only(bottom: 0, right: 28, top: 0),
+                    child: 
+                     icono,
+
+                   
+                  ),
+                  Column(
+                    children: [
+                      Text(subtitle, style: TextStyle(fontSize: 20),),
+                    ],
+                  ),
+
+                  Container(
+                    margin:
+                        const EdgeInsets.only(bottom: 50, left: 0, top: 0),
+                    child: titulo,
+                  )
+                ]) //Text(subdata, style: TextStyle(fontSize: 18)),
+
+                ,
+              ),
+
+
           subtitle: Container(
-            margin: const EdgeInsets.only(top: 0, bottom: 50),
+            margin: const EdgeInsets.only(top: 0, bottom: 0,left: 80),
             alignment: Alignment.bottomLeft,
             child: Column(
               children: [

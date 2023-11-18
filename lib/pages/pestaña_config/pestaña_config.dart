@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:practica_3/pages/pesta%C3%B1a_config/myhomemap.dart';
 import 'package:practica_3/pages/pesta%C3%B1a_config/pesta%C3%B1a_cuenta.dart';
 import 'package:practica_3/pages/pesta%C3%B1a_config/ubicaciones.dart';
+import 'package:practica_3/widgets/drawer.dart';
 
 class MyPestanaConfig extends StatefulWidget {
   const MyPestanaConfig({super.key});
@@ -21,17 +23,17 @@ class _MyPestanaConfig extends State<MyPestanaConfig> {
               )),
           toolbarHeight: 57,
           backgroundColor: Color.fromARGB(150, 21, 216, 118),
-          leading: const Icon(
-            Icons.account_circle,
-            color: Color.fromARGB(252, 0, 0, 0),
-            size: 60,
-          ),
+         
         ),
-        body: Column(
+        drawer: Drawer(child: MyDrawer()),
+        body: Container(
+        child: SingleChildScrollView(
+          child: 
+        Column(
           children: [
             Botoncitos(
               figura: Icons.account_circle_outlined,
-              titulo: 'Mi cuenta            ',
+              titulo: 'Mi cuenta ',
               presionar: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const MyCuenta()));
@@ -40,7 +42,7 @@ class _MyPestanaConfig extends State<MyPestanaConfig> {
             ),
             Botoncitos(
               figura: Icons.add_location_alt_outlined,
-              titulo: 'Mi ubicación       ',
+              titulo: 'Mi ubicación ',
               presionar: () {
                 Navigator.push(
                     context,
@@ -51,14 +53,14 @@ class _MyPestanaConfig extends State<MyPestanaConfig> {
             ),
             Botoncitos(
               figura: Icons.door_back_door_outlined,
-              titulo: 'Cerrar sesión      ',
+              titulo: 'Cerrar sesión ',
               presionar: () {
                 SystemNavigator.pop();
               },
               clikBoton: () {},
             ),
           ],
-        ));
+        ),)));
   }
 }
 

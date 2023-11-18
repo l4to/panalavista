@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:practica_3/pages/configuraciones.dart';
 import 'package:practica_3/pages/pesta%C3%B1a_config/pesta%C3%B1a_config.dart';
+import 'package:practica_3/widgets/drawer.dart';
 
 class MyCuenta extends StatefulWidget {
   const MyCuenta({super.key});
+  
 
   @override
   State<MyCuenta> createState() => _MyCuentaState();
 }
 
+
+
 class _MyCuentaState extends State<MyCuenta> {
+
+  String nombre = 'Pepe Andres';
+  String apellido = 'Rojas Cerpa';
+  String correo = 'contraseña ';
+  String contrasena = '************';
+
+  void changeText() {
+    setState(() {
+      nombre = 'Nuevo texto';
+    });
+  }
+
+  
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +43,7 @@ class _MyCuentaState extends State<MyCuenta> {
           elevation: 14,
           //shadowColor: Colors.white,
 
-          leading: const Icon(
-            Icons.account_circle,
-            color: Color.fromARGB(252, 0, 0, 0),
-            size: 60,
-          ),
+          
           actions: [
             IconButton(
               icon: Icon(
@@ -45,32 +60,36 @@ class _MyCuentaState extends State<MyCuenta> {
             )
           ],
         ),
+        drawer: Drawer(child: MyDrawer()),
         body: SizedBox(
             child: Column(
           children: [
             Botoncitos(
               titulo: 'Nombre                 ',
-              subdata: 'Pepe Andres                         ',
+              subdata: nombre,
               clikBoton: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Myconfiguraciones()));
+                
+                ;
               },
             ),
             Botoncitos(
+              clikBoton: () {
+                 changeText;
+                child: Text('Cambiar Texto')
+                ;
+              },
               titulo: 'Apellido                 ',
-              subdata: 'Rojas Cerpa                          ',
-              clikBoton: () {},
+              subdata: apellido,
+              
             ),
             Botoncitos(
               titulo: 'Correo electronico',
-              subdata: 'Correo@.gmail.com             ',
+              subdata: correo,
               clikBoton: () {},
             ),
             Botoncitos(
               titulo: 'Contraseña           ',
-              subdata: '***********                           ',
+              subdata: contrasena,
               clikBoton: () {},
             ),
             Botoncitos2(
@@ -92,12 +111,13 @@ class _MyCuentaState extends State<MyCuenta> {
 
 class Botoncitos extends StatelessWidget {
   final String titulo;
+  //final Row texto;
   //final Container boton;
   final String subdata;
   final VoidCallback clikBoton;
 
   const Botoncitos(
-      {required this.titulo, required this.clikBoton, required this.subdata});
+      {required this.titulo, required this.clikBoton, required this.subdata, });
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +159,9 @@ class Botoncitos extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5)),
                     foregroundColor: Color.fromARGB(255, 236, 236, 236),
                   ),
-                ))
+              
+                )),
+           
           ]) //Text(subdata, style: TextStyle(fontSize: 18)),
 
           ,
